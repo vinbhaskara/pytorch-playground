@@ -15,7 +15,7 @@ def gen_spiral(delta_t, num, noise=0):
     return np.concatenate([x, y], axis=1)
 
 
-def classify_spiral_data(num_samples, noise=0, random_seed=None):
+def classify_spiral_data(num_samples, noise=0, random_seed=None, shuffle=False):
     """
     Example:
         >> inputs, labels, colors = classify_spiral_data(100, 0.0)
@@ -40,5 +40,12 @@ def classify_spiral_data(num_samples, noise=0, random_seed=None):
     inputs = np.concatenate(inputs, axis=0).astype(np.float32)
     labels = np.array(labels).astype(np.int32)
     colors = [_COLORS_[i] for i in labels]
+
+    if shuffle:
+        indices = np.arange(inputs.shape[0]).astype(np.int32)
+        np.random.shuffle(indices)
+        inputs = inputs[indices]
+        labels = labels[indices]
+        colors = [colors[i] for i in indices.tolist()]
 
     return inputs, labels, colors
