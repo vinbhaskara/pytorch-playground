@@ -1,6 +1,5 @@
 import numpy as np
 
-# dataset function that returns the specified number of points
 _COLORS_ = ["#f5962a", "#117bbf"]  # orange (class 0), blue (class 1)
 _PI_ = 3.1416
 
